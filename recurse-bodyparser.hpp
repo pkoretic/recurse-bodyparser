@@ -16,7 +16,7 @@ auto bodyparser()
             QMap<QString, QVariant>::const_iterator i;
 
             for (i = map.constBegin(); i != map.constEnd(); ++i) {
-                req.body_ph[i.key()] = i.value();
+                req.body_parsed[i.key()] = i.value();
             }
         }
         else if (req.header["content-type"] == "application/x-www-form-urlencoded") {
