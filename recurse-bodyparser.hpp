@@ -6,7 +6,9 @@
 
 auto bodyparser()
 {
-    return [](auto &req, auto &res, auto next) {
+    return [](auto &ctx, auto next) {
+        auto &req = ctx.request;
+
         if (req.body.isEmpty())
             return next();
 
