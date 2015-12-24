@@ -12,7 +12,7 @@ auto bodyparser()
         if (req.body.isEmpty())
             return next();
 
-        if (req.header["content-type"] == "application/json") {
+        if (req.get("content-type") == "application/json") {
             QJsonDocument json = QJsonDocument::fromJson(req.body.toUtf8());
             const QVariantMap map = json.object().toVariantMap();
             QMap<QString, QVariant>::const_iterator i;
@@ -21,7 +21,7 @@ auto bodyparser()
                 req.body_parsed[i.key()] = i.value();
             }
         }
-        else if (req.header["content-type"] == "application/x-www-form-urlencoded") {
+        else if (req.get("content-type") == "application/x-www-form-urlencoded") {
         }
 
         next();
